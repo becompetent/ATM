@@ -27,20 +27,28 @@ while True:
     if num == '4':
         break
     if num=="1":
-       deposit_amount = int(input("입금할 금액을 입력해주세요 : ")) #내장함수: input()/ int() input()>문자로인식
-       if deposit_amount.isdigit() and int(deposit_amount) > 0: #1000 -> True  천원 -> False #Flase 조건을 and 앞에 해주면 코딩속도가 빨라짐
-         balance += int(deposit_amount) #산술할당 연산자
-       receipts.append(("입금", deposit_amount, balance))
-       print(f"입금하신 금액은 {deposit_amount}원이고, 현재 잔액은 {balance}원 입니다.")
-    else:
-        print("입금한 금액을 숫자 형태와 음수형태가 아닌 겂을 입력해주세요")
+       deposit_amount = (input("입금할 금액을 입력해주세요 : ")) #내장함수: input()/ int() input()>문자로인식 #1000 -> True  천원 -> False #Flase 조건을 and 앞에 해주면 코딩속도가 빨라짐
+       if deposit_amount.isdigit() and int(deposit_amount) > 0: 
+          balance += int(deposit_amount) #산술할당 연산자
+          receipts.append(("입금", deposit_amount, balance))
+          print(f"입금하신 금액은 {deposit_amount}원이고, 현재 잔액은 {balance}원 입니다.")
+       else:
+          print("입금한 금액을 숫자 형태와 음수형태가 아닌 겂을 입력해주세요")
 
     if num=="2":
        withdraw_amount = int(input("출금할 금액을 입력해주세요 : ")) 
        withdraw_amount = min(balance, withdraw_amount)
        balance -= withdraw_amount 
        receipts.append(("출금", withdraw_amount, balance))
-       print(f"출금하신 금액은 {withdraw_amount}원이고, 현재 잔액은 {balance}원 입니다.")       
+       print(f"출금하신 금액은 {withdraw_amount}원이고, 현재 잔액은 {balance}원 입니다.")    
+
+    if num =="3":
+       if receipts: #프로그램이 시작되자마자 3번을 눌렀을 경우 이 조건은 참인가요 거짓인가요? 거짓 =내용이 비어있으면
+          print("===영수증===")
+          for i in receipts: #("입금", deposit_ammount, balance)
+             print(f"{i[0]}: {i[1]}원 ㅣ 잔액 : {i[2]}원")         
+       else:
+          print("영수증 내역이 없습니다.")
 
 print(f"서비스를 종료합니다. 현재 잔액은 {balance}원 입니다. ")
 
